@@ -22,8 +22,7 @@ class ListFrame extends JFrame {
     Scanner sc = new Scanner(System.in);
     Point pMouse = null;
     Figure focus = null;
-    int distX, distY;
-    
+   
     ListFrame () {
     	this.setTitle("Projeto");
         this.setSize(700, 700);
@@ -35,40 +34,30 @@ class ListFrame extends JFrame {
             }
         );
         
-        this.addMouseListener (new MouseAdapter() {
-        	public void mousePressed (MouseEvent evt) {
-        		focus = null;
-				pMouse = getMousePosition();
-        		for (Figure fig: figs) {
-        			if(((fig.x >= pMouse.x) && (fig.y >= pMouse.y)) && ((pMouse.x >= (fig.x + fig.w)) && (pMouse.y >= (fig.y + fig.h )))) {
-        				focus = fig;
-        			}
-        		}        		
-        	}
-        });        
+        /*this.addMouseListener (new MouseAdapter() {
+        	public void mousePressed (MouseEvent e) {
+				
+			}
+		});        
         
 		this.addMouseMotionListener(new MouseMotionAdapter() {
-			public void mouseDragged (MouseEvent evt){
-				if(focus != null) {
-					figs.remove(focus);
-        			figs.add(focus);
-        			distX = focus.x - pMouse.x;
-        			distY = focus.y - pMouse.y;                    
-				}
-				repaint();				
+			public void mouseDragged (MouseEvent e) {
+				
 			}
-		});
+		});*/
 
         this.addKeyListener (
             new KeyAdapter() {
-                public void keyPressed (KeyEvent evt) {
+                public void keyPressed (KeyEvent e) {
                 	pMouse = getMousePosition();
                     int x = pMouse.x;
                     int y = pMouse.y;
                     int w = 100;
-                    int h = 100;      
+                    int h = 100;   
                     
-                    Scanner sc = new Scanner(System.in);
+                    //removido para facilitar nos testes   
+                    
+                    /*Scanner sc = new Scanner(System.in);
 					
 					System.out.print("Valor de R para o Contorno até 255: ");  
 					int Rcontorno = sc.nextInt();  
@@ -87,25 +76,28 @@ class ListFrame extends JFrame {
 					System.out.print("Valor de B para o Fundo até 255: ");  
 					int Bfundo = sc.nextInt();
 					
-                    Color fundo = new Color(Rfundo, Gfundo, Bfundo);              
+                    Color fundo = new Color(Rfundo, Gfundo, Bfundo);*/
+                    
+                    Color contorno = new Color(255, 0, 0);
+                    Color fundo = new Color(0, 255, 255);              
                 
-                    if (evt.getKeyChar() == 'e') {
+                    if (e.getKeyChar() == 'e') {
                         figs.add(new Ellipse(x, y, w, h, contorno, fundo));
                         focus = figs.get(figs.size()-1);
                     }                     
-                    else if (evt.getKeyChar() == 'r') {
+                    else if (e.getKeyChar() == 'r') {
                         figs.add(new Rect(x, y, w, h, contorno, fundo));
                         focus = figs.get(figs.size()-1);
                     }                                       
-                    else if (evt.getKeyChar() == 't') {
+                    else if (e.getKeyChar() == 't') {
                     	figs.add(new Triangle(x, y, w, h, contorno, fundo));
                     	focus = figs.get(figs.size()-1);
                     } 
-                    else if (evt.getKeyChar() == 'p') {
+                    else if (e.getKeyChar() == 'p') {
                     	figs.add(new Pentagon(x, y, w, h, contorno, fundo));
                     	focus = figs.get(figs.size()-1);
                     }
-                    else if (evt.getKeyCode() == 127) {
+                    else if (e.getKeyCode() == 127) {
 		            	figs.remove(focus);
 		            	focus = null;
 		            }
