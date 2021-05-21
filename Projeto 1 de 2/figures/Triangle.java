@@ -11,12 +11,7 @@ public class Triangle extends Figure {
 	private Color contorno, fundo;
 		
 	public Triangle (int x, int y, int w, int h, Color contorno, Color fundo) {
- 		this.x = x;
- 		this.y = y;
-	 	this.w = w;
-	 	this.h = h;
-	 	this.contorno = contorno;
-	 	this.fundo = fundo;	 	
+ 		super(x, y, w, h , contorno, fundo);	 	
 	}
 	
 	public void paint(Graphics g) {
