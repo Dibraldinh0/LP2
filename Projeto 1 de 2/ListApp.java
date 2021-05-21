@@ -17,11 +17,11 @@ class ListApp {
     }
 }
 
-class ListFrame extends JFrame {
-    ArrayList<Figure> figs = new ArrayList<Figure>();
-    Scanner sc = new Scanner(System.in);
+class ListFrame extends JFrame {   
+    ArrayList<Figure> figs = new ArrayList<Figure>();  
     Point pMouse = null;
-    Figure focus = null;
+    Figure focus = null;       
+	int dx, dy;
    
     ListFrame () {
     	this.setTitle("Projeto");
@@ -34,17 +34,40 @@ class ListFrame extends JFrame {
             }
         );
         
-        /*this.addMouseListener (new MouseAdapter() {
-        	public void mousePressed (MouseEvent e) {
-				
-			}
-		});        
-        
-		this.addMouseMotionListener(new MouseMotionAdapter() {
-			public void mouseDragged (MouseEvent e) {
-				
-			}
-		});*/
+        this.addMouseListener(
+            new MouseAdapter() {
+                public void mousePressed(MouseEvent me) {
+                    pMouse = getMousePosition();
+                    focus = null;
+                    for (Figure figo: figs) {
+                        if (figo.clicked(pMouse.x, pMouse.y)) {
+                            focus = figo;
+                            figs.remove(focus);
+                            figs.add(focus);
+                            dx = focus.x - pMouse.x;
+                            dy = focus.y - pMouse.y;
+                            break;
+						}
+					}
+					repaint();                     
+                }   
+            }
+        );
+
+        this.addMouseMotionListener(
+            new MouseMotionAdapter() {
+                public void mouseDragged(MouseEvent me) {
+                    pMouse = getMousePosition();
+                    if (focus != null) {
+                        figs.remove(focus);
+                        figs.add(focus);
+                        focus.x = pMouse.x + dx;
+                        focus.y = pMouse.y + dy;
+                    }
+					repaint();
+                }
+            }
+        );
 
         this.addKeyListener (
             new KeyAdapter() {
@@ -109,8 +132,12 @@ class ListFrame extends JFrame {
 
     public void paint (Graphics g) {
         super.paint(g);
-        for (Figure fig: this.figs) {
-            fig.paint(g);
+        for (Figure figo: this.figs) {
+            figo.paint(g);
+        }
+        
+        if (focus != null) {
+            focus.drawBorder(g);
         }
     }
 }
