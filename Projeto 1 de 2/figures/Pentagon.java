@@ -8,12 +8,7 @@ public class Pentagon extends Figure {
 	private Polygon p = new Polygon();
 
 	public Pentagon (int x, int y, int w, int h, Color contorno, Color fundo) {
-		this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.contorno = contorno;
-	 	this.fundo = fundo;
+		super(x, y, w, h , contorno, fundo);
         
         p.npoints = 4;
         p.xpoints[0] = (int) (x + w/2);
@@ -37,5 +32,4 @@ public class Pentagon extends Figure {
         g2d.setColor(fundo);
         g2d.fillPolygon(p);
 	}
-
 }
