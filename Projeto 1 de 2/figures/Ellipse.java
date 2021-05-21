@@ -10,12 +10,7 @@ public class Ellipse extends Figure {
 	private Color contorno, fundo;
    	
     public Ellipse (int x, int y, int w, int h, Color contorno, Color fundo) {
-        this.x = x;
-        this.y = y;
-        this.w = w;
-        this.h = h;
-        this.contorno = contorno;
-        this.fundo = fundo;
+        super(x, y, w, h , contorno, fundo);
     }
 
 	@Override
