@@ -3,8 +3,7 @@ package figures;
 import java.awt.*;
 
 public class Pentagon extends Figure {
-	public int x, y, w, h;
-	public Color contorno, fundo;
+
 	private Polygon p = new Polygon();
 
 	public Pentagon (int x, int y, int w, int h, Color contorno, Color fundo) {
@@ -32,4 +31,5 @@ public class Pentagon extends Figure {
         g2d.setColor(fundo);
         g2d.fillPolygon(p);
 	}
+
 }
