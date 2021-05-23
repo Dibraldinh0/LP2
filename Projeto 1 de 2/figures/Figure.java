@@ -19,9 +19,7 @@ public abstract class Figure {
 		this.fundo = fundo;
     }
     
-	public Color borda = new Color(255,10,10);
-	
-	
+	public Color borda = new Color(255,10,10);	
 	
 	public boolean clicked (int posX, int posY) {
 		  return (((x <= posX) && (y <= posY)) && ((posX <= (x + w)) && (posY <= (y + h))));
