@@ -1,12 +1,14 @@
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import figures.*;
 
@@ -18,14 +20,14 @@ class ListApp {
 }
 
 class ListFrame extends JFrame {   
-    ArrayList<Figure> figs = new ArrayList<Figure>();  
-    Point pMouse = null;
+	ArrayList<Figure> figs = new ArrayList<Figure>();
+	Point pMouse = null;
     Figure focus = null;       
 	int dx, dy;
    
     ListFrame () {
     	this.setTitle("Projeto");
-        this.setSize(700, 700);
+        this.setSize(500, 500);
         this.addWindowListener (
             new WindowAdapter() {
                 public void windowClosing (WindowEvent e) {
@@ -48,8 +50,8 @@ class ListFrame extends JFrame {
                             dy = focus.y - pMouse.y;
                             break;
 						}
+						repaint();
 					}
-					repaint();                     
                 }   
             }
         );
@@ -102,8 +104,9 @@ class ListFrame extends JFrame {
                     Color fundo = new Color(Rfundo, Gfundo, Bfundo);*/
                     
                     Color contorno = new Color(255, 0, 0);
-                    Color fundo = new Color(0, 255, 255);              
-                
+                    Color fundo = new Color(0, 255, 255);
+                    
+					//Criar novas figuras
                     if (e.getKeyChar() == 'e') {
                         figs.add(new Ellipse(x, y, w, h, contorno, fundo));
                         focus = figs.get(figs.size()-1);
@@ -120,6 +123,30 @@ class ListFrame extends JFrame {
                     	figs.add(new Pentagon(x, y, w, h, contorno, fundo));
                     	focus = figs.get(figs.size()-1);
                     }
+                    
+                    //Redimensionamento das figuras                    
+                    else if (e.getKeyChar() == 'd' ) {
+						//aumenta largura w da figura
+						focus.w += 10; 
+						focus = figs.get(figs.size()-1);
+                    }
+                    else if (e.getKeyChar() == 'a' ) {
+                    	//diminui largura w da figura
+                    	focus.w -= 10; 
+						focus = figs.get(figs.size()-1);
+                    }
+                    else if (e.getKeyChar() == 's' ) {
+						//aumenta altura h da figura
+						focus.h += 10; 
+						focus = figs.get(figs.size()-1);
+                    }
+                    else if (e.getKeyChar() == 'w' ) {
+						//diminui altura h da figura
+						focus.h -= 10; 
+						focus = figs.get(figs.size()-1);
+                    }
+                    
+                    //Deletar a figura em foco
                     else if (e.getKeyCode() == 127) {
 		            	figs.remove(focus);
 		            	focus = null;
