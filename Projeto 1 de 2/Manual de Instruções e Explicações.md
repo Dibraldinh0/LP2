@@ -8,7 +8,8 @@ Para utilizar o programa, o usuário deve posicionar o mouse no local onde desej
 
 A figura pode ser movimentada livremente. Também é possível modifica-la ou deleta-la
 
-1) Para **AUMENTAR A ALTURA** da figura precione a tecla **S**;
-2) Para **DIMINUIR A ALTURA** da figura precione a tecla **W**;
-3) Para **AUMENTAR A LARGURA** da figura precione a tecla **D**;
-4) Para **DIMINUIR A LARGURA** da figura precione a tecla **A**;
+1) Para **AUMENTAR A ALTURA** da figura pressione a tecla **S**;
+2) Para **DIMINUIR A ALTURA** da figura pressione a tecla **W**;
+3) Para **AUMENTAR A LARGURA** da figura pressione a tecla **D**;
+4) Para **DIMINUIR A LARGURA** da figura pressione a tecla **A**;
+5) Para **DELETAR** a figura pressione a tecla **DELETE**.
