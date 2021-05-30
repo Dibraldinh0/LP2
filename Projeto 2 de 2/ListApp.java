@@ -174,14 +174,14 @@ class ListFrame extends JFrame {
                     //Troca de cores
                     else if (e.getKeyChar() == 'c'){
                     	contContorno += 1;
-                    	if (contContorno > 11){
+                    	if (contContorno > 12){
                     		contContorno = 0;
                     	}
                     	focus.contorno = cores[contContorno];
                     }
                     else if (e.getKeyChar() == 'f'){
                     	contFundo += 1;
-                    	if (contFundo > 11){
+                    	if (contFundo > 12){
                     		contFundo = 0;
                     	}
                     	focus.fundo = cores[contFundo];
