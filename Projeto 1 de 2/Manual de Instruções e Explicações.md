@@ -13,4 +13,9 @@ A figura pode ser movimentada livremente. Ao clicar numa figura para movimenta-l
 2) Para **DIMINUIR A ALTURA** da figura pressione a tecla **W**;
 3) Para **AUMENTAR A LARGURA** da figura pressione a tecla **D**;
 4) Para **DIMINUIR A LARGURA** da figura pressione a tecla **A**;
-5) Para **DELETAR** a figura pressione a tecla **DELETE**.
+5) Para **DELETAR** a figura pressione a tecla **DELETE**;
+
+A cor da figura em foco também pode ser modificada:
+
+1) Para **TROCAR A COR DE CONTORNO** pressione a tecla **C**;
+2) Para **TROCAR A COR DE FUNDO** pressione a tecla **F**.
