@@ -24,10 +24,14 @@ class ListFrame extends JFrame {
 	Point pMouse = null;
     Figure focus = null;       
 	int dx, dy;
+	int contContorno = 0;
+	int contFundo = 1;
+	
+	Color cores[] = {Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, Color.MAGENTA, Color.CYAN, Color.WHITE, Color.BLACK, Color.GRAY, Color.LIGHT_GRAY, Color.DARK_GRAY, Color.PINK, Color.ORANGE};
    
     ListFrame () {
-    	this.setTitle("Projeto");
-        this.setSize(500, 500);
+    	this.setTitle("Projeto 1/2");
+        this.setSize(700, 700);
         this.addWindowListener (
             new WindowAdapter() {
                 public void windowClosing (WindowEvent e) {
@@ -78,33 +82,9 @@ class ListFrame extends JFrame {
                     int x = pMouse.x;
                     int y = pMouse.y;
                     int w = 100;
-                    int h = 100;   
-                    
-                    //removido para facilitar nos testes   
-                    
-                    /*Scanner sc = new Scanner(System.in);
-					
-					System.out.print("Valor de R para o Contorno até 255: ");  
-					int Rcontorno = sc.nextInt();  
-					System.out.print("Valor de G para o Contorno até 255: ");  
-					int Gcontorno = sc.nextInt();  
-					System.out.print("Valor de B para o Contorno até 255: ");  
-					int Bcontorno = sc.nextInt();
-					
-					Color contorno = new Color(Rcontorno, Gcontorno, Bcontorno);
-					
-					Scanner scfundo = new Scanner(System.in);
-                    System.out.print("Valor de R para o Fundo até 255: ");  
-					int Rfundo = sc.nextInt();  
-					System.out.print("Valor de G para o Fundo até 255: ");  
-					int Gfundo = sc.nextInt();  
-					System.out.print("Valor de B para o Fundo até 255: ");  
-					int Bfundo = sc.nextInt();
-					
-                    Color fundo = new Color(Rfundo, Gfundo, Bfundo);*/
-                    
-                    Color contorno = new Color(255, 0, 0);
-                    Color fundo = new Color(0, 255, 255);
+                    int h = 100;                    
+                    Color contorno = cores[contContorno];
+                    Color fundo = cores[contFundo];
                     
 					//Criar novas figuras
                     if (e.getKeyChar() == 'e') {
@@ -124,27 +104,51 @@ class ListFrame extends JFrame {
                     	focus = figs.get(figs.size()-1);
                     }
                     
+                    
+                    
                     //Redimensionamento das figuras                    
-                    else if (e.getKeyChar() == 'd' ) {
-						//aumenta largura w da figura
+                    else if (e.getKeyChar() == 'd' ) {//aumenta largura w da figura						
 						focus.w += 10; 
 						focus = figs.get(figs.size()-1);
                     }
-                    else if (e.getKeyChar() == 'a' ) {
-                    	//diminui largura w da figura
-                    	focus.w -= 10; 
+                    else if (e.getKeyChar() == 'a' ) {//diminui largura w da figura                    	
+                    	focus.w -= 10;
+                    	if (focus.w < 10) {
+							focus.w += 10;
+                    	} 
 						focus = figs.get(figs.size()-1);
                     }
-                    else if (e.getKeyChar() == 's' ) {
-						//aumenta altura h da figura
+                    else if (e.getKeyChar() == 's' ) {//aumenta altura h da figura						
 						focus.h += 10; 
 						focus = figs.get(figs.size()-1);
                     }
-                    else if (e.getKeyChar() == 'w' ) {
-						//diminui altura h da figura
-						focus.h -= 10; 
+                    else if (e.getKeyChar() == 'w' ) {//diminui altura h da figura						
+						focus.h -= 10;
+						if (focus.h < 10) {
+							focus.h += 10;
+                    	}  
 						focus = figs.get(figs.size()-1);
                     }
+                    
+                    
+                    
+                    //Troca de cores
+                    else if (e.getKeyChar() == 'c'){
+                    	contContorno += 1;
+                    	if (contContorno > 12){
+                    		contContorno = 0;
+                    	}
+                    	focus.contorno = cores[contContorno];
+                    }
+                    else if (e.getKeyChar() == 'f'){
+                    	contFundo += 1;
+                    	if (contFundo > 12){
+                    		contFundo = 0;
+                    	}
+                    	focus.fundo = cores[contFundo];
+                    }
+                    
+                    
                     
                     //Deletar a figura em foco
                     else if (e.getKeyCode() == 127) {
