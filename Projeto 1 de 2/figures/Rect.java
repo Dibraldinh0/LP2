@@ -15,6 +15,6 @@ public class Rect extends Figure {
 		g2d.setColor(this.contorno);
         g2d.drawRect(this.x, this.y, this.w, this.h);	
         g2d.setColor(this.fundo);
-		g2d.fillRect(x, y, w, h);
+		g2d.fillRect(x+1, y+1, w-1, h-1);
 	}
 }
