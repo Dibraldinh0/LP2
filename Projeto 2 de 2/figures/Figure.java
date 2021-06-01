@@ -10,9 +10,7 @@ import java.io.Serializable;
 public abstract class Figure implements IVisible, Serializable {
 	public int x, y, w, h;
 	public Color contorno, fundo;
-	
-    //public abstract void paint (Graphics g);
-    
+
     public Figure(int x, int y, int w, int h, Color contorno, Color fundo) {
 		this.x = x;
 		this.y = y;
@@ -29,10 +27,8 @@ public abstract class Figure implements IVisible, Serializable {
 	}
 	
 	public void drawBorder(Graphics g, boolean focused) {
-		if (focused){
-			Graphics2D g2d = (Graphics2D) g;
-			g2d.setColor(borda);
-			g2d.drawRect(this.x, this.y, this.w, this.h);
-		}
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(borda);
+		g2d.drawRect(this.x-4, this.y-4, this.w+8, this.h+8);		
 	}	
 }
