@@ -63,6 +63,7 @@ class ListFrame extends JFrame {
                 }
             }
         );
+        
         //inicializando a lista de botoes
         buts.add(new Button(1, new Ellipse(20, 130, 35, 35, Color.BLACK, Color.BLACK)));        
         buts.add(new Button(2, new Rect(20, 85, 35, 35, Color.BLACK, Color.BLACK)));
@@ -73,8 +74,9 @@ class ListFrame extends JFrame {
             new MouseAdapter() {
                 public void mousePressed(MouseEvent me) {
                     pMouse = getMousePosition();
-                    focus = null;                    
-                    //Teste se foi no botão
+                    focus = null;
+                                       
+                    //Teste se o clique foi no botão
                     if ((15 <= pMouse.x && pMouse.x <= 60) && (35 <= pMouse.y && pMouse.y <= 215)) {
 						focus = null;
         				for (Button butto: buts) {
@@ -84,6 +86,7 @@ class ListFrame extends JFrame {
         				}
         				repaint();
         			}
+        			
         			//Botão focado, cria a figura
         			else if(butfocus != null) {
         				int idx = butfocus.idx;
@@ -93,34 +96,44 @@ class ListFrame extends JFrame {
 		                int w = 100;
 		                int h = 100;
 		                Color contorno = cores[contContorno];
-                    	Color fundo = cores[contFundo];  
+                    	Color fundo = cores[contFundo]; 
+                    	 
                     	if (idx == 1) {                  			
-                    		figs.add(new Ellipse(x, y, w, h, contorno, fundo));                           
+                    		figs.add(new Ellipse(x, y, w, h, contorno, fundo));
+                    		focus = figs.get(figs.size()-1);                           
                     	}
                     	else if (idx == 2) {
                     		figs.add(new Rect(x, y, w, h, contorno, fundo));
+                    		focus = figs.get(figs.size()-1);
                     	}
                     	else if (idx == 3) {
                     		figs.add(new Triangle(x, y, w, h, contorno, fundo));
+                    		focus = figs.get(figs.size()-1);
                     	}
                     	else {
                     		figs.add(new Pentagon(x, y, w, h, contorno, fundo));
+                    		focus = figs.get(figs.size()-1);
                     	}
-                    	focus = figs.get(figs.size()-1);
-                    	butfocus = null;        				
+                    	butfocus = null;
+                    	repaint();        				
         			}
+        			
         			//Teste se foi na figura
         			else {
 		    			for (Figure figo: figs) {
 		                    if (figo.clicked(pMouse.x, pMouse.y)) {
 		                        focus = figo;
-		                        figs.remove(focus);
-		                        figs.add(focus);
+		                        figs.remove(figo);
+		                        figs.add(figo);
 		                        dx = focus.x - pMouse.x;
 		                        dy = focus.y - pMouse.y;
 		                        break;
 							}
-							repaint();
+							
+							else {
+								focus = null;
+								repaint();
+							}							
 						}
 					}    
                 }   
@@ -154,6 +167,10 @@ class ListFrame extends JFrame {
                     Color fundo = cores[contFundo];   
                     
 					//Criar novas figuras
+					//E cria uma elipse
+					//R cria um retângulo
+					//T cria um triângulo
+					//P cria um Pentágono
                     if (e.getKeyChar() == 'e') {
                         figs.add(new Ellipse(x, y, w, h, contorno, fundo));
                         focus = figs.get(figs.size()-1);
@@ -171,23 +188,27 @@ class ListFrame extends JFrame {
                     	focus = figs.get(figs.size()-1);
                     }                    
                     
-                    //Redimensionamento das figuras                    
-                    else if (e.getKeyChar() == 'd' ) {//aumenta largura w da figura						
+                    //Redimensionamento das figuras
+                    //D aumenta a largura da figura
+                    //A diminui a largura da figura 
+                    //W aumenta a altura da figura
+                    //S diminui a altura da figura		  	                    
+                    else if (e.getKeyChar() == 'd' ) {					
 						focus.w += 10; 
 						focus = figs.get(figs.size()-1);
                     }
-                    else if (e.getKeyChar() == 'a' ) {//diminui largura w da figura                    	
+                    else if (e.getKeyChar() == 'a' ) {                 	
                     	focus.w -= 10;
                     	if (focus.w < 10) {
 							focus.w += 10;
                     	} 
 						focus = figs.get(figs.size()-1);
                     }
-                    else if (e.getKeyChar() == 's' ) {//aumenta altura h da figura						
+                    else if (e.getKeyChar() == 's' ) {				
 						focus.h += 10; 
 						focus = figs.get(figs.size()-1);
                     }
-                    else if (e.getKeyChar() == 'w' ) {//diminui altura h da figura						
+                    else if (e.getKeyChar() == 'w' ) {						
 						focus.h -= 10;
 						if (focus.h < 10) {
 							focus.h += 10;
@@ -196,6 +217,7 @@ class ListFrame extends JFrame {
                     }                    
                     
                     //Troca de cores
+                    //C muda a cor do contorno e F a do fundo
                     else if (e.getKeyChar() == 'c'){
                     	contContorno += 1;
                     	if (contContorno > 12){
@@ -209,9 +231,22 @@ class ListFrame extends JFrame {
                     		contFundo = 0;
                     	}
                     	focus.fundo = cores[contFundo];
-                    }                    
+                    }
                     
-                    //Deletar a figura em foco
+                    //Usando a tecla BACKSPACE alteramos a figura em foco 
+                    else if (e.getKeyCode() == 32) {
+		                for (Figure figo: figs) {
+		                    if (focus != figo){
+		                        focus=figo;
+		                        figs.remove(figo);
+		                        figs.add(figo);
+		                        repaint();
+		                        break;
+		                    }
+		                }
+		            }                  
+                    
+                    //Deletar a figura em foco pressionando DELETE
                     else if (e.getKeyCode() == 127) {
 		            	figs.remove(focus);
 		            	focus = null;
