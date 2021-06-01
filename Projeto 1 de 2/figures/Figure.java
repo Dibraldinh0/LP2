@@ -28,6 +28,6 @@ public abstract class Figure {
 	public void drawBorder(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(borda);
-		g2d.drawRect(this.x, this.y, this.w, this.h);
+		g2d.drawRect(this.x-4, this.y-4, this.w+8, this.h+8);
 	}	
 }
