@@ -10,8 +10,7 @@ public class Ellipse extends Figure {
         super(x, y, w, h , contorno, fundo);
     }
 
-	@Override
-	public void paint(Graphics g, boolean focused) {
+		public void paint(Graphics g, boolean focused) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(this.contorno);
         g2d.draw(new Ellipse2D.Double(this.x, this.y, this.w, this.h));

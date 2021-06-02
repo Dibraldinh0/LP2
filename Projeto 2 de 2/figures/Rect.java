@@ -9,7 +9,6 @@ public class Rect extends Figure {
 		super(x, y, w, h , contorno, fundo);
     }
 
-	@Override
 	public void paint(Graphics g, boolean focused) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(this.contorno);
