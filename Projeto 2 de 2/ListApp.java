@@ -17,6 +17,7 @@ class ListApp {
     public static void main (String[] args) {
         ListFrame frame = new ListFrame();
         frame.setVisible(true);
+        frame.setFocusTraversalKeysEnabled(false);
     }
 }
 
@@ -43,7 +44,7 @@ class ListFrame extends JFrame {
         	o.close();
         }        
         catch (Exception x) {
-        	System.out.println("ERRO AO ABRIR");
+        	System.out.println("INICIALIZADO");
         } 
         
         this.addWindowListener (
@@ -132,8 +133,8 @@ class ListFrame extends JFrame {
 							
 							else {
 								focus = null;
-								repaint();
-							}							
+							}
+							repaint();							
 						}
 					}    
                 }   
@@ -233,8 +234,8 @@ class ListFrame extends JFrame {
                     	focus.fundo = cores[contFundo];
                     }
                     
-                    //Usando a tecla BACKSPACE alteramos a figura em foco 
-                    else if (e.getKeyCode() == 32) {
+                    //Usando a tecla TAB alteramos a figura em foco 
+                    else if (e.getKeyCode() == 9) {
 		                for (Figure figo: figs) {
 		                    if (focus != figo){
 		                        focus=figo;
