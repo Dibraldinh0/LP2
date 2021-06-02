@@ -33,14 +33,20 @@ class ListFrame extends JFrame {
                     int y = rand.nextInt(350);
                     int w = rand.nextInt(50);
                     int h = rand.nextInt(50);
+                    int rc = rand.nextInt(255);
+                    int gc = rand.nextInt(255);
+                    int bc = rand.nextInt(255);
+                    int rf = rand.nextInt(255);
+                    int gf = rand.nextInt(255);
+                    int bf = rand.nextInt(255);
                     if (evt.getKeyChar() == 'r') {
-                        figs.add(new Rect(x, y, w, h));
+                        figs.add(new Rect(x, y, w, h, rc, gc, bc, rf, gf, bf));
                     }
                     else if (evt.getKeyChar() == 'e') {
-                        figs.add(new Ellipse(x, y, w, h));
+                        figs.add(new Ellipse(x, y, w, h, rc, gc, bc, rf, gf, bf));
                     }
-                    else if (evt.getKeyChar() == 'l') {
-                    	figs.add(new Losango(x, y, w, h));
+                    else if (evt.getKeyChar() == 'p') {
+                    	figs.add(new Pentagon(x, y, w, h, rc, gc, bc, rf, gf, bf));
                     }
                     repaint();
                 }
