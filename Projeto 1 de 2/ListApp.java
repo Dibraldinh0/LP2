@@ -16,6 +16,7 @@ class ListApp {
     public static void main (String[] args) {
         ListFrame frame = new ListFrame();
         frame.setVisible(true);
+        frame.setFocusTraversalKeysEnabled(false);
     }
 }
 
@@ -87,6 +88,10 @@ class ListFrame extends JFrame {
                     Color fundo = cores[contFundo];
                     
 					//Criar novas figuras
+					//E cria uma elipse
+					//R cria um retângulo
+					//T cria um triângulo
+					//P cria um Pentágono
                     if (e.getKeyChar() == 'e') {
                         figs.add(new Ellipse(x, y, w, h, contorno, fundo));
                         focus = figs.get(figs.size()-1);
@@ -102,37 +107,38 @@ class ListFrame extends JFrame {
                     else if (e.getKeyChar() == 'p') {
                     	figs.add(new Pentagon(x, y, w, h, contorno, fundo));
                     	focus = figs.get(figs.size()-1);
-                    }
+                    }                    
                     
-                    
-                    
-                    //Redimensionamento das figuras                    
-                    else if (e.getKeyChar() == 'd' ) {//aumenta largura w da figura						
+                    //Redimensionamento das figuras
+                    //D aumenta a largura da figura
+                    //A diminui a largura da figura 
+                    //S aumenta a altura da figura		
+                    //W diminui a altura da figura	                    
+                    else if (e.getKeyChar() == 'd' ) {						
 						focus.w += 10; 
 						focus = figs.get(figs.size()-1);
                     }
-                    else if (e.getKeyChar() == 'a' ) {//diminui largura w da figura                    	
+                    else if (e.getKeyChar() == 'a' ) {                   	
                     	focus.w -= 10;
                     	if (focus.w < 10) {
 							focus.w += 10;
                     	} 
 						focus = figs.get(figs.size()-1);
                     }
-                    else if (e.getKeyChar() == 's' ) {//aumenta altura h da figura						
+                    else if (e.getKeyChar() == 's' ) {				
 						focus.h += 10; 
 						focus = figs.get(figs.size()-1);
                     }
-                    else if (e.getKeyChar() == 'w' ) {//diminui altura h da figura						
+                    else if (e.getKeyChar() == 'w' ) {					
 						focus.h -= 10;
 						if (focus.h < 10) {
 							focus.h += 10;
                     	}  
 						focus = figs.get(figs.size()-1);
-                    }
+                    }                    
                     
-                    
-                    
-                    //Troca de cores
+					//Troca de cores
+                    //C muda a cor do contorno e F a do fundo
                     else if (e.getKeyChar() == 'c'){
                     	contContorno += 1;
                     	if (contContorno > 12){
@@ -148,9 +154,20 @@ class ListFrame extends JFrame {
                     	focus.fundo = cores[contFundo];
                     }
                     
+                    //Usando a tecla TAB alteramos a figura em foco 
+                    else if (e.getKeyCode() == 9) {
+		                for (Figure figo: figs) {
+		                    if (focus != figo){
+		                        focus=figo;
+		                        figs.remove(figo);
+		                        figs.add(figo);
+		                        repaint();
+		                        break;
+		                    }
+		                }
+		            }                      
                     
-                    
-                    //Deletar a figura em foco
+                    //Deletar a figura em foco pressionando delete
                     else if (e.getKeyCode() == 127) {
 		            	figs.remove(focus);
 		            	focus = null;
