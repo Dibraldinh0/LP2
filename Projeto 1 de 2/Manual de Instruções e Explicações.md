@@ -18,4 +18,6 @@ A figura pode ser movimentada livremente. Ao clicar numa figura para movimenta-l
 A cor da figura em foco também pode ser modificada:
 
 1) Para **TROCAR A COR DE CONTORNO** pressione a tecla **C**;
-2) Para **TROCAR A COR DE FUNDO** pressione a tecla **F**.
+2) Para **TROCAR A COR DE FUNDO** pressione a tecla **F**;
+
+Para alternar entre as figuras use a tecla  **TAB**.
