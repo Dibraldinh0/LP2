@@ -17,7 +17,6 @@ class ListApp {
     public static void main (String[] args) {
         ListFrame frame = new ListFrame();
         frame.setVisible(true);
-        frame.setFocusTraversalKeysEnabled(false);
     }
 }
 
@@ -44,7 +43,7 @@ class ListFrame extends JFrame {
         	o.close();
         }        
         catch (Exception x) {
-        	System.out.println("INICIALIZADO");
+        	System.out.println("ERRO AO ABRIR");
         } 
         
         this.addWindowListener (
@@ -75,7 +74,6 @@ class ListFrame extends JFrame {
             new MouseAdapter() {
                 public void mousePressed(MouseEvent me) {
                     pMouse = getMousePosition();
-                    focus = null;
                                        
                     //Teste se o clique foi no botão
                     if ((15 <= pMouse.x && pMouse.x <= 60) && (35 <= pMouse.y && pMouse.y <= 215)) {
@@ -121,21 +119,21 @@ class ListFrame extends JFrame {
         			
         			//Teste se foi na figura
         			else {
+        				focus = null;
 		    			for (Figure figo: figs) {
 		                    if (figo.clicked(pMouse.x, pMouse.y)) {
 		                        focus = figo;
-		                        figs.remove(figo);
-		                        figs.add(figo);
-		                        dx = focus.x - pMouse.x;
+								dx = focus.x - pMouse.x;
 		                        dy = focus.y - pMouse.y;
-		                        break;
-							}
-							
-							else {
-								focus = null;
-							}
-							repaint();							
+		                        repaint();
+							}							
 						}
+						
+						//clique na figura, colocamos ela para o final da lista
+						if (focus != null) {
+		        			figs.remove(focus);       	
+		                	figs.add(focus);
+		        		}						
 					}    
                 }   
             }
@@ -234,8 +232,8 @@ class ListFrame extends JFrame {
                     	focus.fundo = cores[contFundo];
                     }
                     
-                    //Usando a tecla TAB alteramos a figura em foco 
-                    else if (e.getKeyCode() == 9) {
+                    //Usando a tecla BACKSPACE alteramos a figura em foco 
+                    else if (e.getKeyCode() == 32) {
 		                for (Figure figo: figs) {
 		                    if (focus != figo){
 		                        focus=figo;
