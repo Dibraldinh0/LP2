@@ -46,16 +46,18 @@ class ListFrame extends JFrame {
                 public void mousePressed(MouseEvent me) {
                     pMouse = getMousePosition();
                     focus = null;
-                    for (Figure figo: figs) {
-                        if (figo.clicked(pMouse.x, pMouse.y)) {
-                            focus = figo;
-                            figs.remove(focus);
-                            figs.add(focus);
-                            dx = focus.x - pMouse.x;
-                            dy = focus.y - pMouse.y;
-                            break;
-						}
-						repaint();
+		    		for (Figure figo: figs) {
+						if (figo.clicked(pMouse.x, pMouse.y)) {
+							focus = figo;
+							dx = focus.x - pMouse.x;
+							dy = focus.y - pMouse.y;
+							repaint();
+						}							
+					}						
+					//clique na figura, colocamos ela para o final da lista
+					if (focus != null) {
+						figs.remove(focus);       	
+						figs.add(focus);
 					}
                 }   
             }
