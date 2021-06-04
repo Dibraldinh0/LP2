@@ -2,13 +2,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 import javax.swing.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import figures.*;
 
@@ -50,8 +47,7 @@ class ListFrame extends JFrame {
 						if (figo.clicked(pMouse.x, pMouse.y)) {
 							focus = figo;
 							dx = focus.x - pMouse.x;
-							dy = focus.y - pMouse.y;
-							repaint();
+							dy = focus.y - pMouse.y;							
 						}							
 					}						
 					//clique na figura, colocamos ela para o final da lista
@@ -59,6 +55,7 @@ class ListFrame extends JFrame {
 						figs.remove(focus);       	
 						figs.add(focus);
 					}
+					repaint();
                 }   
             }
         );
